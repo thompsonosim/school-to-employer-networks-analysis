@@ -329,3 +329,5 @@ degree_raw, field_raw, world_rank, us_rank, university_country, university_locat
 - Raw data stays on the SSH server — never commit it to GitHub
 - Only scripts, comments, and non-sensitive notes go in this repo
 - No personal/identifiable data in any committed file
+- Names and external identifiers have been anonymised in the raw source data (e.g. `user_id` values are numeric hashes such as `113769511`, `867344776`, etc., rather than actual names).
+- The dataset contains NO direct demographic variables (e.g., no `race`, `gender`, `ethnicity`, or `age` columns). Furthermore, because names are hashed, demographic inference via name-matching is impossible. Any demographic analysis would require looking at ecological proxies (e.g., university name, geographic location, or field of study).
