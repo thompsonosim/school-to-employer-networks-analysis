@@ -303,10 +303,27 @@ degree_raw, field_raw, world_rank, us_rank, university_country, university_locat
 - ~39% of degree fields are missing ("empty") — limits field-level analysis
 - Only 8,196 of 857,329 position users matched education records in this sample — suggests the sample covers a small subset of the full dataset
 
-### Step 6 — Export
-<!-- Date: -->
-<!-- Output files: -->
-<!-- Location: -->
+### Step 6 — Data Preparation for Two Projects
+- Date: 14 April 2026
+- Scripts: `08_global_edgelist.py`, `09_uk_dataset.py`
+
+**Project 1 — School-to-employer pipelines around the world (`08_global_edgelist.py`):**
+- Merges education + positions on `user_id` (inner join)
+- Drops rows with null university or employer
+- Collapses to edgelist: each row = (graduate_institution, employer, institution_country, employer_country, count)
+- `count` = number of unique individuals linking each university–employer pair
+- Covers all countries present in the data
+- Output: `processed/global_edgelist.csv`
+
+**Project 2 — Effects of blind hiring in UK civil service (`09_uk_dataset.py`):**
+- Filters positions to `country == "United Kingdom"`
+- Retrieves education records for all UK-positioned users (regardless of where they studied)
+- Merges UK positions + education
+- Saves three files for downstream analysis:
+  - `processed/uk_positions.parquet` — UK positions only
+  - `processed/uk_education.parquet` — education records for UK workers
+  - `processed/uk_merged.parquet` — joined UK positions + education
+- Further narrowing (e.g., civil service employers, time periods) to be decided later
 
 ---
 
